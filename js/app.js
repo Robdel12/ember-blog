@@ -2,9 +2,8 @@ App = Ember.Application.create();
 
 App.Router.map(function() {
   this.resource("about");
-  this.resource("posts", function(){
-    this.resource("new");
-  });
+  this.resource("posts");
+  this.resource("new");
   this.resource("post", { path: "/post/:post_slug" });
 });
 
@@ -22,7 +21,7 @@ App.PostsRoute = Ember.Route.extend({
 
 App.PostRoute = Ember.Route.extend({
   model: function(params) {
-    //return this.store.find("post", this.get("title"));
+    return params.post_slug;
   }
 });
 
@@ -45,6 +44,7 @@ App.NewController = Ember.ObjectController.extend({
         excerpt: this.get('post.excerpt'),
         body: this.get('post.body'),
         published: new Date().getTime(),
+        post_slug: this.get("post.title").replace(/\s+$/g,'').replace(/\s+/g, '-').toLowerCase()
       });
       newPost.save();
       this.setProperties({
@@ -64,12 +64,10 @@ App.Post = DS.Model.extend({
   body: DS.attr("string"),
   excerpt: DS.attr("string"),
   published: DS.attr("number"),
+  post_slug: DS.attr("string"),
   publishedDate: function() {
     return moment(this.get("published")).format("MMMM Do, YYYY");
-  }.property("published"),
-  post_slug: function(){
-    return this.get("title").replace(/\s+$/g,'').replace(/\s+/g, '-').toLowerCase();
-  }.property("title")
+  }.property("published")
 });
 
 Ember.Handlebars.helper('markdown', function(value, options) {
