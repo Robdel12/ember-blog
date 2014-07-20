@@ -1,0 +1,20 @@
+{
+  "name": "EmberBlog",
+  "version": "0.0.1",
+  "author": {
+    "name": "Robert DeLuca",
+    "email": "robertdeluca19@gmail.com"
+  },
+  "devDependencies": {
+    "gulp-util": "~2.2.14",
+    "gulp": "~3.5.1",
+    "gulp-rename": "~1.2.0",
+    "gulp-concat": "~2.2.0",
+    "gulp-uglify": "~0.3.1",
+    "gulp-jshint": "~1.6.3",
+    "gulp-sass": "~0.7.2"
+  },
+  "dependencies": {
+    "gulp": "^3.8.6"
+  }
+}
