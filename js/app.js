@@ -24,7 +24,6 @@ App.IndexRoute = Ember.Route.extend({
 App.BlogRoute = Ember.Route.extend({
   model: function(){
     return this.store.findAll("post");
-    // return post;
   }
 });
 
@@ -105,97 +104,9 @@ App.Post = DS.Model.extend({
   published: DS.attr("number"),
   post_slug: DS.attr("string"),
   publishedDate: function() {
-    return moment(this.get("published")).format("MMMM Do, YYYY");
+    return moment(this.get("published")).format("MMM Do");
   }.property("published")
 });
-
-//Temp for plane ride...
-// var post = [
-//   {
-//     title: "Post title",
-//     excerpt: "This is the little excerpt.. Maybe I should limit this to a certain amount of chars",
-//     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis.",
-//     post_slug: "post-title",
-//     publishedDate: moment(new Date(2014, 0, 20)).format("MMM Do")
-//   },
-//   {
-//     title: "Post title 2",
-//     excerpt: "This is the little excerpt.. Maybe I should limit this to a certain amount of chars",
-//     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis.",
-//     post_slug: "post-title-2",
-//     publishedDate: moment(new Date(2014, 01, 25)).format("MMM Do")
-//   },
-//   {
-//     title: "Post title 3",
-//     excerpt: "This is the little excerpt.. Maybe I should limit this to a certain amount of chars",
-//     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis.",
-//     post_slug: "post-title-3",
-//     publishedDate: moment(new Date(2014, 02, 29)).format("MMM Do")
-//   },
-//   {
-//     title: "Post title 4",
-//     excerpt: "This is the little excerpt.. Maybe I should limit this to a certain amount of chars",
-//     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis.",
-//     post_slug: "post-title-3",
-//     publishedDate: moment(new Date(2014, 03, 29)).format("MMM Do")
-//   },
-//   {
-//     title: "Post title 5",
-//     excerpt: "This is the little excerpt.. Maybe I should limit this to a certain amount of chars",
-//     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis.",
-//     post_slug: "post-title-3",
-//     publishedDate: moment(new Date(2014, 04, 29)).format("MMM Do")
-//   },
-//   {
-//     title: "Post title 6",
-//     excerpt: "This is the little excerpt.. Maybe I should limit this to a certain amount of chars",
-//     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis.",
-//     post_slug: "post-title-3",
-//     publishedDate: moment(new Date(2014, 29, 29)).format("MMM Do")
-//   },
-//   {
-//     title: "Post title 7",
-//     excerpt: "This is the little excerpt.. Maybe I should limit this to a certain amount of chars",
-//     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis.",
-//     post_slug: "post-title-3",
-//     publishedDate: moment(new Date(2014, 06, 29)).format("MMM Do")
-//   },
-//   {
-//     title: "Post title 8",
-//     excerpt: "This is the little excerpt.. Maybe I should limit this to a certain amount of chars",
-//     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis.",
-//     post_slug: "post-title-3",
-//     publishedDate: moment(new Date(2014, 07, 29)).format("MMM Do")
-//   },
-//   {
-//     title: "Post title 9",
-//     excerpt: "This is the little excerpt.. Maybe I should limit this to a certain amount of chars",
-//     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis.",
-//     post_slug: "post-title-3",
-//     publishedDate: moment(new Date(2014, 08, 29)).format("MMM Do")
-//   },
-//   {
-//     title: "Post title 10",
-//     excerpt: "This is the little excerpt.. Maybe I should limit this to a certain amount of chars",
-//     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis.",
-//     post_slug: "post-title-3",
-//     publishedDate: moment(new Date(2014, 09, 29)).format("MMM Do")
-//   },
-//   {
-//     title: "Post title 11",
-//     excerpt: "This is the little excerpt.. Maybe I should limit this to a certain amount of chars",
-//     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis.",
-//     post_slug: "post-title-3",
-//     publishedDate: moment(new Date(2014, 10, 29)).format("MMM Do")
-//   },
-//   {
-//     title: "Post title 12",
-//     excerpt: "This is the little excerpt.. Maybe I should limit this to a certain amount of chars",
-//     body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quo perferendis tempora odit distinctio itaque officia fugit, at, exercitationem voluptatem, ab sint maiores ad consectetur harum, error quae recusandae. Blanditiis.",
-//     post_slug: "post-title-3",
-//     publishedDate: moment(new Date(2014, 11, 29)).format("MMM Do")
-//   },
-// ];
 
 Ember.Handlebars.helper('markdown', function(value, options) {
   if (!value || !options){ return; }
