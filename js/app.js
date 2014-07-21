@@ -35,16 +35,10 @@ App.PostRoute = Ember.Route.extend({
   }
 });
 
-App.NewRoute = Ember.Route.extend({
-  model: function() {
-    return;
-  }
-});
-
 //this seems to do nothing
-App.BlogIndexController = Ember.ArrayController.extend({
+App.BlogController = Ember.ArrayController.extend({
   sortProperties: ['published'],
-  asortAscending: false
+  sortAscending: false
 });
 
 App.NewController = Ember.ObjectController.extend({
