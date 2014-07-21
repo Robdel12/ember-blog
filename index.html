@@ -3,44 +3,81 @@
 <head>
   <meta charset="utf-8">
   <title>Ember blog</title>
-  <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <script type="text/x-handlebars">
-    <ul>
-      <li>{{#link-to "about"}}About{{/link-to}}</li>
-      <li>{{#link-to "posts"}}Post{{/link-to}}</li>
-    </ul>
-    {{outlet}}
+    <div class="main-container">
+      <nav>
+        <ul>
+          <li>{{#link-to "about"}}About{{/link-to}}</li>
+          <li>{{#link-to "blog"}}Blog{{/link-to}}</li>
+        </ul>
+      </nav>
+      <section class="hero">
+        <header>
+          <h1>Hi, I'm Robert.</h1> <!--' -->
+          <p>And I create online awesome.</p>
+        </header>
+      </section>
+      <div class="inner-container">
+        {{outlet}}
+      </div>
+      <footer>
+        <div class="footer-content">
+          <p>&copy; {{copyrightDate}} - <a href="https://github.com/Robdel12">Check out my Github</a></p>
+          <?php wp_footer(); ?>
+        </div>
+      </footer>
+    </body>
+    </html>
+    </div>
   </script>
-
-  <script type="text/x-handlebars" id="posts">
+  <script type="text/x-handlebars" id="blog">
     {{#each}}
-      <h3>{{#link-to "post" this}} {{title}} {{/link-to}}</h3>
-      <p>{{excerpt}}</p>
-      <p>{{date}}</p>
+      <div class="posts">
+        <div class="blog-left">
+          <span class="post-date">
+            <span class="inner-date">{{publishedDate}}</span>
+          </span>
+        </div>
+        <div class="blog-right">
+          <h3 class="posts-title">{{#link-to "post" this}} {{title}} {{/link-to}}</h3>
+          <span class="posts-excerpt">{{excerpt}} {{#link-to "post" this}} [Read More] {{/link-to}}</span>
+        </div>
+      </div>
     {{/each}}
-
-    {{outlet}}
   </script>
-
   <script type="text/x-handlebars" id="post">
-    <h1>{{title}}</h1>
-    {{publishedDate}}
-    {{{markdown body}}}
+    <div class="post">
+      <h1 class="post-title">{{title}}</h1>
+      <span class="post-date">{{publishedDate}}</span>
+
+      {{markdown body}}
+    </div>
   </script>
 
   <script type="text/x-handlebars" data-template-name="new">
-    <h2>New Post</h2>
-    <p>{{input value=post.title placeholder="Title"}}</p>
-    <p>{{input value=post.excerpt placeholder="Little excerpt"}}</p>
-    <p>{{textarea value=post.body placeholder="Body"}}</p>
-    <p><button {{action "publishPost"}}>Publish</button></p>
-    <div class="preview">
-      <h2>{{post.title}}</h2>
-      {{markdown post.body}}
-    </div>
+    {{#if isLoggedIn}}
+      <h2>New Post</h2>
+      <p>{{input value=post.title placeholder="Title"}}</p>
+      <p>{{input value=post.excerpt placeholder="Little excerpt"}}</p>
+      <p>{{textarea value=post.body placeholder="Body"}}</p>
+      <p><button {{action "publishPost"}}>Publish</button></p>
+      <div class="preview">
+        <h2>{{post.title}}</h2>
+        {{markdown post.body}}
+      </div>
+      <p><button {{action "logOut"}}>Log out</button></p>
+    {{else}}
+      <h2>Login</h2>
+      <p>{{input value=login.email placeholder="User Name"}}</p>
+      <p>{{input value=login.password type="password" placeholder="Password"}}</p>
+      <p><button {{action "logIn"}}>Log in</button></p>
+    {{/if}}
+
   </script>
 
   <script type="text/x-handlebars" id="about">
@@ -50,10 +87,11 @@
 
   <script src="js/libs/jquery-1.10.2.js"></script>
   <script src="js/libs/handlebars-1.2.1.js"></script>
-  <script src="js/libs/ember-1.5.0.js"></script>
+  <script src="js/libs/ember.js"></script>
   <script src="js/libs/ember-data.js"></script>
   <script src="js/libs/firebase.js"></script>
   <script src="js/libs/emberfire.js"></script>
+  <script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.6.1/firebase-simple-login.js'></script>
   <script src="js/libs/moment.js"></script>
   <script src="js/libs/md5.js"></script>
   <script src="js/libs/markdown.js"></script>
