@@ -69,6 +69,12 @@ body{
     font-family: Courier New;
     border: 1px solid #C0C0C0;
   }
+  input,
+  textarea{
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 6px;
+  }
 }
 .alignleft{
   float: left;
@@ -77,6 +83,13 @@ body{
 .alignright{
   float: right;
   margin-left: 25px;
+}
+.btn{
+  background: $primary_color;
+  border: 1px solid lighten($primary_color, 14%);
+  border-radius: 6px;
+  padding: 6px 14px;
+  color: white;
 }
 
 // =========================================================== Nav ============================================================
@@ -213,12 +226,14 @@ nav{
 }
 
 // =========================================================== Blog single post ============================================================
+
 .post{
   max-width: 960px;
   margin: 0 auto;
   h1{
     font-size: 2.9rem;
     line-height: 3.2rem;
+    padding-bottom: 10px;
   }
   h3{
     margin: 10px 0;
@@ -243,7 +258,41 @@ nav{
   margin-top: 50px;
 }
 
+//Login
+.login-form{
+  width: 21%;
+  input{
+    width: 100%;
+  }
+  .btn{
+    float: right;
+  }
+}
+
+//new post
+.new-post{
+  @include flex-box;
+}
+.new-post-inner{
+  @include flex(2);
+  margin-right: 2%;
+  input,
+  textarea{
+    width: 100%;
+  }
+  textarea{
+    height: 140px;
+  }
+  .btn{
+    float: right;
+  }
+}
+.preview{
+  @include flex(2);
+}
+
 // =========================================================== Timeline ============================================================
+
 .about-page{
   @include flex-box;
   margin: 20px 0;

@@ -9,30 +9,43 @@ App.ApplicationAdapter = DS.FirebaseAdapter.extend({
 App.ApplicationSerializer = DS.FirebaseSerializer.extend();
 
 App.Router.map(function() {
-  this.resource("about");
-  this.resource("blog");
-  this.resource("new");
-  this.resource("post", { path: "/post/:post_slug" });
+  this.route("about");
+  this.route("blog");
+  this.route("new");
+  this.route("post", { path: "/post/:post_slug" });
 });
 
 App.IndexRoute = Ember.Route.extend({
+
   redirect: function() {
     this.transitionTo("blog");
   }
+
 });
 
 App.BlogRoute = Ember.Route.extend({
+
   model: function(){
     return this.store.findAll("post");
-    // return post;
   }
+
 });
 
 App.PostRoute = Ember.Route.extend({
+
   model: function(params) {
-    console.log(params);
     return params.post_slug;
-  }
+    // return jQuery.getJSON("/post/" + params.post_slug);
+    // var store = this.store;
+    // // Get all the posts from Firebase
+    // return store.findAll('post').then(function(slugs) {
+    //   // Then filter the ones you want
+    //   return store.filter('post', { post_slug: params.post_slug });
+    // });
+  },
+  // serialize: function(model) {
+  //   return { post_slug: model.get('data').post_slug };
+  // }
 });
 
 //this seems to do nothing
@@ -43,7 +56,7 @@ App.BlogController = Ember.ArrayController.extend({
 
 App.NewController = Ember.ObjectController.extend({
 
-  isLoggedIn: true,
+  isLoggedIn: false,
 
   init: function() {
     this.set('post',  Ember.Object.create());
@@ -55,7 +68,6 @@ App.NewController = Ember.ObjectController.extend({
         console.log(error);
       } else if (user) {
         // user authenticated with Firebase
-        // console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
         self.set('isLoggedIn', true);
       } else {
         self.set('isLoggedIn', false);
@@ -64,6 +76,7 @@ App.NewController = Ember.ObjectController.extend({
   },
 
   actions: {
+
     publishPost: function() {
       var newPost = this.store.createRecord('post', {
         title: this.get('post.title'),
@@ -119,6 +132,7 @@ Ember.Handlebars.helper('copyrightDate', function(){
 });
 
 App.CDisqusComponent = Em.Component.extend({
+
   didInsertElement: function () {
     var page_id = window.location.href,
         disqus_identifier = page_id,
@@ -126,9 +140,6 @@ App.CDisqusComponent = Em.Component.extend({
         disqus_title = Em.$('title').text(),
         disqus_shortname = 'robertdeluca', // CHANGE, USE YOURS
         el_id = disqus_shortname + Date.now();
-
-        console.log(page_id);
-        console.log(disqus_title);
 
     this.set('page_id', el_id);
 
@@ -139,7 +150,8 @@ App.CDisqusComponent = Em.Component.extend({
     dsq.id = el_id;
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   },
+
   willDestroyElement: function () {
-      Em.$('#' +  this.get('page_id')).remove();
+    Em.$('#' +  this.get('page_id')).remove();
   }
 });

@@ -102,6 +102,11 @@ body {
     font-size: 14px;
     font-family: Courier New;
     border: 1px solid #C0C0C0; }
+  body input,
+  body textarea {
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 6px; }
 
 .alignleft {
   float: left;
@@ -110,6 +115,13 @@ body {
 .alignright {
   float: right;
   margin-left: 25px; }
+
+.btn {
+  background: #057ea6;
+  border: 1px solid #07b3eb;
+  border-radius: 6px;
+  padding: 6px 14px;
+  color: white; }
 
 nav {
   padding: 15px 0;
@@ -231,7 +243,8 @@ nav {
   margin: 0 auto; }
   .post h1 {
     font-size: 2.9rem;
-    line-height: 3.2rem; }
+    line-height: 3.2rem;
+    padding-bottom: 10px; }
   .post h3 {
     margin: 10px 0; }
   .post ul {
@@ -248,6 +261,42 @@ nav {
 
 .comment-wrap {
   margin-top: 50px; }
+
+.login-form {
+  width: 21%; }
+  .login-form input {
+    width: 100%; }
+  .login-form .btn {
+    float: right; }
+
+.new-post {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+
+.new-post-inner {
+  -webkit-box-flex: 2;
+  -moz-box-flex: 2;
+  -webkit-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  margin-right: 2%; }
+  .new-post-inner input,
+  .new-post-inner textarea {
+    width: 100%; }
+  .new-post-inner textarea {
+    height: 140px; }
+  .new-post-inner .btn {
+    float: right; }
+
+.preview {
+  -webkit-box-flex: 2;
+  -moz-box-flex: 2;
+  -webkit-flex: 2;
+  -ms-flex: 2;
+  flex: 2; }
 
 .about-page {
   display: -webkit-box;

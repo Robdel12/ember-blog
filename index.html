@@ -64,20 +64,27 @@
   <script type="text/x-handlebars" data-template-name="new">
     {{#if isLoggedIn}}
       <h2>New Post</h2>
-      <p>{{input value=post.title placeholder="Title"}}</p>
-      <p>{{input value=post.excerpt placeholder="Little excerpt"}}</p>
-      <p>{{textarea value=post.body placeholder="Body"}}</p>
-      <p><button {{action "publishPost"}}>Publish</button></p>
-      <div class="preview">
-        <h2>{{post.title}}</h2>
-        {{markdown post.body}}
+      <div class="new-post">
+        <div class="new-post-inner">
+          <p>{{input value=post.title placeholder="Title"}}</p>
+          <p>{{input value=post.excerpt placeholder="Little excerpt"}}</p>
+          <p>{{textarea value=post.body placeholder="Body"}}</p>
+          <p><button {{action "publishPost"}} class="btn">Publish</button></p>
+        </div>
+        <div class="preview">
+          <h1>{{post.title}}</h1>
+
+          {{markdown post.body}}
+        </div>
       </div>
-      <p><button {{action "logOut"}}>Log out</button></p>
+      <p><button {{action "logOut"}} class="btn">Log out</button></p>
     {{else}}
       <h2>Login</h2>
-      <p>{{input value=login.email placeholder="User Name"}}</p>
-      <p>{{input value=login.password type="password" placeholder="Password"}}</p>
-      <p><button {{action "logIn"}}>Log in</button></p>
+      <div class="login-form">
+        <p>{{input value=login.email placeholder="User Name"}}</p>
+        <p>{{input value=login.password type="password" placeholder="Password"}}</p>
+        <p><button {{action "logIn"}} class="btn">Log in</button></p>
+      </div>
     {{/if}}
 
   </script>
